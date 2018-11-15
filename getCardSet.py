@@ -1,6 +1,7 @@
 import json
 import requests
 import os
+from urllib import request
 
 default_setids_path = 'setid'
 
@@ -98,4 +99,27 @@ def get_all_cardset():
     for setid in setids:
         save_cardset(setid)
 
-get_all_cardset()
+
+def check_url(value):
+    if not isinstance(value, dict):
+        if isinstance(value, str):
+            if 'http' in value:
+                path = 'img/' + value.split('/')[-1]
+                if not os.path.exists(path):
+                    request.urlretrieve(value, path)
+    else:
+        for key in value:
+            check_url(value[key])
+
+
+def download_images():
+    setids = get_setids(default_setids_path)
+    for set_id in setids:
+        with open('save/' + set_id + '.json') as f:
+            cardset = json.load(f)['card_set']
+        card_list = cardset['card_list']
+        for card in card_list:
+            check_url(card)
+
+# get_all_cardset()
+download_images()
