@@ -15,4 +15,8 @@ More functions will be added in the future.
 `getCardSet.get_all_cardset()`
 ## Download all images in cardset json
 `getCardSet.download_images()`
+>  Also can be downloaded from here(May be not latest).https://pan.baidu.com/s/1_Nw7N2xPQDTG5SL2JZoIeg 提取码: 88b3 
+
 > Proxy recommended if you're in China
+
+
