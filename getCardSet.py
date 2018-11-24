@@ -2,6 +2,12 @@ import json
 import requests
 import os
 from urllib import request
+import argparse
+
+parser = argparse.ArgumentParser()
+parser.add_argument('--get', '-g', action='store_true', help='get json file')
+parser.add_argument('--img', '-i', action='store_true', help='download card images')
+args = parser.parse_args()
 
 default_setids_path = 'setid'
 
@@ -38,6 +44,7 @@ def stage1(setid: str) -> str:
     host = 'https://playartifact.com/cardset/'
     request_url = host + setid
     response = make_get_request(request_url)
+    print(type(response))
     cdn_root = response['cdn_root']
     url = response['url']
     return cdn_root + url
@@ -60,8 +67,8 @@ def save_json(content: dict, save_path: str):
     :param save_path: output path
     :return:None
     """
-    with open(save_path, 'w') as f:
-        json.dump(content, f)
+    with open(save_path, 'w', encoding='utf-8') as f:
+        json.dump(content, f, ensure_ascii=False)
 
 
 def save_cardset(setid: str):
@@ -121,5 +128,9 @@ def download_images():
         for card in card_list:
             check_url(card)
 
-# get_all_cardset()
-download_images()
+
+if __name__ == '__main__':
+    if args.get:
+        get_all_cardset()
+    if args.img:
+        download_images()

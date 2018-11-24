@@ -12,9 +12,9 @@ More functions will be added in the future.
 
 # How to use
 ## Get all cardset json
-`getCardSet.get_all_cardset()`
+run `python getCardSet.py -g`
 ## Download all images in cardset json
-`getCardSet.download_images()`
+run `python getCardSet.py -i`
 >  Also can be downloaded from here(May be not latest).https://pan.baidu.com/s/1_Nw7N2xPQDTG5SL2JZoIeg 提取码: 88b3 
 
 > Proxy recommended if you're in China
